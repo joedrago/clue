@@ -1,0 +1,60 @@
+# axis TITLE CARDS...
+axis Suspects mustard plum green peacock scarlet white rose gray brunette peach
+axis Weapons knife candlestick revolver rope pipe wrench poison horseshoe
+axis Rooms courtyard gazebo drawing dining kitchen carriage trophy conservatory studio billiard library fountain
+
+# axis YOU OTHERS...
+players joe chris dave liz
+
+# saw OWNER CARD
+saw joe plum
+saw joe gray
+saw joe brunette
+saw joe pipe
+saw joe dining
+saw joe kitchen
+saw joe studio
+
+# suggest PLAYER CARDS... PLAYERS_THAT_SHOWED_A_CARD...
+suggest joe mustard knife billiard chris liz
+saw chris billiard
+saw liz mustard
+
+suggest chris peacock poison courtyard dave liz
+suggest dave brunette revolver billiard joe chris
+suggest liz brunette knife billiard joe chris
+
+suggest joe white rope studio chris liz
+saw chris rope
+saw liz white
+
+suggest liz plum revolver courtyard joe
+
+suggest joe scarlet poison billiard chris dave liz
+saw chris billiard
+saw dave scarlet
+saw liz poison
+
+suggest chris rose wrench courtyard liz
+
+suggest dave peach horseshoe courtyard chris
+
+suggest liz green revolver dining joe dave
+
+suggest joe plum pipe courtyard -
+
+suggest dave white rope courtyard chris liz
+
+suggest liz peach revolver courtyard chris
+
+suggest joe rose pipe courtyard -
+
+suggest chris rose poison courtyard liz
+
+suggest dave mustard pipe courtyard joe liz
+
+suggest liz gray candlestick courtyard joe chris
+
+suggest joe rose revolver courtyard -
+
+# accuse: rose revolver courtyard
