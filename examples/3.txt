@@ -1,0 +1,37 @@
+# axis YOU OTHERS...
+# axis TITLE CARDS...
+# hand CARDS...
+
+players joe chris dave liz diana tom
+
+axis Suspects mustard plum green peacock scarlet white rose gray brunette peach
+axis Weapons knife candlestick revolver rope pipe wrench poison horseshoe
+axis Rooms courtyard gazebo drawing dining kitchen carriage trophy conservatory studio billiard library fountain
+
+hand pipe gazebo trophy studio
+
+suggest diana peacock poison billiard chris dave tom
+
+suggest joe mustard knife studio tom
+saw tom mustard
+
+suggest chris peach wrench billiard liz tom
+
+suggest diana mustard revolver courtyard tom
+
+suggest joe peacock poison courtyard chris dave
+saw chris poison
+saw dave peacock
+
+suggest chris mustard revolver courtyard tom
+
+suggest dave brunette revolver courtyard diana
+
+suggest liz mustard rope courtyard chris tom
+
+suggest joe scarlet pipe gazebo diana
+saw diana scarlet
+
+suggest tom peach pipe courtyard joe liz
+
+suggest joe rose pipe courtyard -
