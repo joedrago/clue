@@ -1,5 +1,10 @@
 fs = require 'fs'
 
+pad = (val, length, padChar = ' ') ->
+  val += ''
+  numPads = length - val.length
+  if (numPads > 0) then new Array(numPads + 1).join(padChar) + val else val
+
 class ClueSolver
   constructor: ->
     # For parseFile errors
@@ -69,8 +74,8 @@ class ClueSolver
     console.log JSON.stringify(@axes, null, 2)
 
   addAxis: (axisName, cardNames) ->
-    @log("Adding axis '#{axis}': #{cardNames}")
-    if @playerlist.length < 3
+    @log("Adding axis '#{axisName}': #{cardNames}")
+    if @playerlist.length < 1
       @fatalError "Please add players before defining an axis"
     for name in cardNames
       if @cards[name]?
@@ -81,7 +86,7 @@ class ClueSolver
         cantOwn: []
         owner: null
         index: @cardlist.length
-        solution: null # can be true or false (null is unknown)
+        answer: null # can be true or false (null is unknown)
       for player in @playerlist
         card.cantOwn.push false
       if not @axes[axisName]?
@@ -89,7 +94,7 @@ class ClueSolver
           name: axisName
           cards: []
           index: @axeslist.length
-          solution: null
+          answer: null
         @axes[axisName] = axis
         @axeslist.push axis
       @axes[axisName].cards.push card
@@ -99,6 +104,8 @@ class ClueSolver
 
   addPlayers: (playerNames) ->
     @log("Adding players: #{playerNames}")
+    if @playerlist.length > 0
+      @fatalError "Please add all players in a single line"
     for name in playerNames
       player =
         name: name
@@ -134,24 +141,31 @@ class ClueSolver
     if (card.owner != null) and (card.owner != playerName)
       @fatalError "Two people cant own #{card.name}: #{card.owner} and (now) #{playerName}"
 
+    previousKnowledge = ""
+    if card.owner == playerName
+      previousKnowledge = "(already known)"
     card.owner = playerName
     for player, index in @playerlist
       if player.name != playerName
         card.cantOwn[index] = true
-    @log "#{playerName} shows you a card: #{cardName}"
-    @think(true)
+    @log "#{playerName} shows you a card: #{cardName} #{previousKnowledge}"
+    @think()
 
   suggest: (playerName, cardNames) ->
     @verbose("Suggest (#{playerName}): #{cardNames}")
+
+    # Organize mishmashed list of card/player names into one card per axis
+    # and the list of players who showed a card. Error out appropriately if
+    # we don't get exactly one card per axis, and either 1+ player names or '-'.
     axisCards = []
-    nobodyShowedCard = false
+    nobodyMarkerPresent = false
     playersShowing = {}
     playersShowingCount = 0
     for axis in @axeslist
       axisCards.push null
     for cardName in cardNames
       if cardName == '-'
-        nobodyShowedCard = true
+        nobodyMarkerPresent = true
       else if @cards[cardName]?
         card = @cards[cardName]
         if axisCards[card.axisIndex] != null
@@ -162,16 +176,26 @@ class ClueSolver
           @fatalError "unknown card or player #{cardName}"
         playersShowing[cardName] = true
         playersShowingCount += 1
+    if nobodyMarkerPresent and (playersShowingCount > 0)
+      @fatalError("Using 'nobody' marker (-) along with a player name")
+    if (playersShowingCount == 0) and not nobodyMarkerPresent
+      @fatalError("No player names and 'nobody' marker (-) is absent")
     for axisCard, index in axisCards
       if axisCard == null
         @fatalError "Suggestion missing axis: #{@axeslist[index].name}"
 
+    # If there was one card shown for each axis, nothing in this suggestion
+    # is a part of the answer. Mark it explicitly.
     if playersShowingCount == @axeslist.length
-      # All axes were shown, tag them all as not-the-solution
       for card in axisCards
-        card.solution = false
+        card.answer = false
+
+    # Tag all players that didn't show a card during this suggestion as being
+    # incapable of owning the suggested cards. Don't do this to the person
+    # performing the suggestion, however, as it is a common strategy to
+    # suggest cards in your hand.
     for player in @playerlist
-      if not playersShowing[player.name]
+      if (player.name != playerName) and not playersShowing[player.name]
         for card in axisCards
           card.cantOwn[player.index] = true
 
@@ -183,20 +207,11 @@ class ClueSolver
       playersShowingList = "Nobody"
     @log("#{playerName} suggested [#{cardNameList}]. [#{playersShowingList}] showed a card.")
     for card in axisCards
-      if card.solution == true
-        info = "part of solution"
-      else if card.owner
-        info = "owned by #{card.owner}"
-      else
-        possibleOwners = []
-        for player, index in @playerlist
-          if not card.cantOwn[index]
-            possibleOwners.push player.name
-        info = "possible owners: #{possibleOwners}"
+      info = @cardInfo(card)
+      @log("#{pad(card.name, 15)} - #{info}")
 
-      @log("    #{card.name} - #{info}")
-
-  think: (comingFromSaw=false) ->
+  think: ->
+    # Find cards that nobody can possibly own, mark them as part of the answer.
     for card in @cardlist
       if card.owner == null
         someoneCanOwn = false
@@ -204,15 +219,70 @@ class ClueSolver
           if !card.cantOwn[index]
             someoneCanOwn = true
         if not someoneCanOwn
-          if card.solution == null
-            console.log "** Discovery! Part of the solution: #{card.name} **"
-            card.solution = true
-            @axeslist[card.axisIndex].solution = card.name
+          if card.answer == null
+            console.log "** Discovery! Part of the answer: #{card.name} **"
+            card.answer = true
+            @axeslist[card.axisIndex].answer = card.name
+            for notAnswer in @axeslist[card.axisIndex].cards
+              if notAnswer.answer != true
+                notAnswer.answer = false
+
+    # Look for any axis that has only one possible answer left
+    for axis in @axeslist
+      onlyAnswer = null
+      for card in axis.cards
+        if card.answer == true
+          onlyAnswer = null
+          break
+        if card.answer == false
+          continue
+        if card.owner == null
+          if onlyAnswer == null
+            onlyAnswer = card
+          else
+            onlyAnswer = null
+            break
+      if onlyAnswer != null
+        console.log "** Discovery! Part of the answer: #{onlyAnswer.name} **"
+        onlyAnswer.answer = true
+        @axeslist[card.axisIndex].answer = card.name
+        for notAnswer in @axeslist[onlyAnswer.axisIndex].cards
+          if notAnswer.answer != true
+            notAnswer.answer = false
+
+  cardInfo: (card) ->
+    if card.answer == true
+      info = "*ANSWER*"
+    else if card.owner
+      info = card.owner
+    else
+      possibleOwners = []
+      if card.answer != false
+        possibleOwners.push "answer"
+      for player, index in @playerlist
+        if not card.cantOwn[index]
+          possibleOwners.push player.name
+      info = "?           (" + possibleOwners.join("/") + ")"
+    return info
 
   display: ->
+    @log "-------------------------------------------------------------------"
+    for axis in @axeslist
+      @log "\n#{pad(axis.name, 15)}"
+      @log "#{pad(pad('', axis.name.length, '-'), 15)}"
+      for card in axis.cards
+        @log "#{pad(card.name, 15)} - " + @cardInfo(card)
+    @log ""
+
+syntax = ->
+  console.log "coffee clue.coffee FILENAME"
+  process.exit(1)
 
 main = ->
+  filename = process.argv.slice(2).shift()
+  if filename == undefined
+    syntax()
   solver = new ClueSolver
-  solver.parseFile("data.txt")
+  solver.parseFile(filename)
   solver.display()
 main()

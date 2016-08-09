@@ -1,0 +1,115 @@
+# axis YOU OTHERS...
+players joe chris dave liz
+
+# axis TITLE CARDS...
+axis Suspects mustard plum green peacock scarlet white rose gray brunette peach
+axis Weapons knife candlestick revolver rope pipe wrench poison horseshoe
+axis Rooms courtyard gazebo drawing dining kitchen carriage trophy conservatory studio billiard library fountain
+
+# hand CARDS...
+hand mustard plum peach candlestick gazebo carriage
+
+suggest joe green knife courtyard dave liz
+saw dave knife
+saw liz courtyard
+
+suggest chris mustard candlestick courtyard joe liz
+
+suggest dave rose horseshoe courtyard liz
+
+suggest liz peach horseshoe billiard joe chris
+
+suggest joe peacock candlestick fountain chris liz
+saw chris fountain
+saw liz peacock
+
+suggest dave peacock poison billiard chris liz
+
+suggest liz brunette poison library chris dave
+
+suggest joe rose candlestick gazebo liz
+saw liz rose
+
+suggest chris plum knife courtyard joe dave liz
+
+suggest liz scarlet horseshoe courtyard chris
+
+saw chris brunette
+
+suggest dave plum candlestick billiard joe chris
+
+suggest liz gray poison dining chris dave
+
+suggest joe white pipe library dave liz
+saw dave pipe
+saw liz white
+
+suggest chris green pipe billiard dave
+
+suggest dave brunette candlestick library joe chris
+
+suggest liz gray horseshoe library chris dave
+
+suggest joe mustard candlestick kitchen liz
+saw liz kitchen
+
+suggest chris white rope studio dave liz
+
+suggest dave scarlet horseshoe kitchen chris liz
+
+suggest liz mustard horseshoe kitchen joe
+
+suggest joe green horseshoe library dave
+saw dave library
+
+suggest chris green revolver billiard liz
+
+suggest dave peach wrench billiard joe chris
+
+suggest liz plum wrench library joe chris dave
+
+suggest joe peach candlestick billiard chris
+saw chris billiard
+
+suggest chris rose knife library dave liz
+
+suggest liz plum pipe kitchen joe dave
+
+suggest joe mustard candlestick studio liz
+saw liz studio
+
+suggest chris white candlestick kitchen joe liz
+
+suggest dave plum poison billiard joe chris
+
+suggest liz peach knife library joe dave
+
+saw dave library
+
+suggest chris white rope billiard dave liz
+
+suggest dave mustard revolver courtyard dave liz
+
+suggest liz brunette knife kitchen chris dave
+
+suggest joe mustard candlestick drawing dave
+saw dave drawing
+
+suggest chris peacock rope studio dave liz
+
+suggest dave peacock wrench fountain chris liz
+
+suggest liz brunette knife trophy chris dave
+
+suggest joe mustard candlestick dining dave
+saw dave dining
+
+suggest chris peach revolver billiard joe liz
+
+suggest dave brunette poison courtyard chris liz
+
+suggest liz brunette rope courtyard chris dave
+
+suggest joe mustard candlestick conservatory dave
+saw dave conservatory
+
