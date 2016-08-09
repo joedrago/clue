@@ -1,19 +1,17 @@
+# axis YOU OTHERS...
+players joe chris dave liz
+
 # axis TITLE CARDS...
 axis Suspects mustard plum green peacock scarlet white rose gray brunette peach
 axis Weapons knife candlestick revolver rope pipe wrench poison horseshoe
 axis Rooms courtyard gazebo drawing dining kitchen carriage trophy conservatory studio billiard library fountain
 
-# axis YOU OTHERS...
-players joe chris dave liz
+# hand CARDS...
+hand plum gray brunette pipe dining kitchen studio
 
 # saw OWNER CARD
-saw joe plum
-saw joe gray
-saw joe brunette
-saw joe pipe
-saw joe dining
-saw joe kitchen
-saw joe studio
+
+dump
 
 # suggest PLAYER CARDS... PLAYERS_THAT_SHOWED_A_CARD...
 suggest joe mustard knife billiard chris liz
@@ -58,3 +56,4 @@ suggest liz gray candlestick courtyard joe chris
 suggest joe rose revolver courtyard -
 
 # accuse: rose revolver courtyard
+dump
