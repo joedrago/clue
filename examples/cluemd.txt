@@ -1,0 +1,35 @@
+axis suspects Suspects
+card suspects mustard Col. Mustard
+card suspects plum Professor Plum
+card suspects green Mr. Green
+card suspects peacock Mrs. Peacock
+card suspects scarlet Miss Scarlet
+card suspects white Mrs. White
+card suspects rose M. Rose
+card suspects gray Inspector Gray
+card suspects brunette M. Brunette
+card suspects peach Ms. Peach
+
+axis weapons Weapons with the
+card weapons knife Knife
+card weapons candlestick Candlestick
+card weapons revolver Revolver
+card weapons rope Rope
+card weapons pipe Pipe
+card weapons wrench Wrench
+card weapons poison Poison
+card weapons horseshoe Horseshoe
+
+axis rooms Rooms in the
+card rooms courtyard Courtyard
+card rooms gazebo Gazebo
+card rooms drawing Drawing Room
+card rooms dining Dining Room
+card rooms kitchen Kitchen
+card rooms carriage Carriage House
+card rooms trophy Trophy Room
+card rooms conservatory Conservatory
+card rooms studio Studio
+card rooms billiard Billiard Room
+card rooms library Library
+card rooms fountain Fountain
