@@ -5,7 +5,7 @@ player chris Chris
 player dave Dave
 player liz Liz
 
-hand plum gray brunette pipe dining kitchen studio
+hand joe plum gray brunette pipe dining kitchen studio
 
 suggest joe mustard knife billiard chris liz
 saw chris billiard

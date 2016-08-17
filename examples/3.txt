@@ -1,14 +1,13 @@
-# axis YOU OTHERS...
-# axis TITLE CARDS...
-# hand CARDS...
+include cluemd.txt
 
-players joe chris dave liz diana tom
+player joe Joe
+player chris Chris
+player dave Dave
+player liz Liz
+player tom Tom
+player diana Diana
 
-axis Suspects mustard plum green peacock scarlet white rose gray brunette peach
-axis Weapons knife candlestick revolver rope pipe wrench poison horseshoe
-axis Rooms courtyard gazebo drawing dining kitchen carriage trophy conservatory studio billiard library fountain
-
-hand pipe gazebo trophy studio
+hand joe pipe gazebo trophy studio
 
 suggest diana peacock poison billiard chris dave tom
 
