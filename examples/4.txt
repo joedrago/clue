@@ -1,0 +1,74 @@
+include cluemd.txt
+
+player joe Joe
+player chris Chris
+player dave Dave
+player liz Liz
+player tom Tom
+player diana Diana
+
+hand joe wrench kitchen studio fountain
+
+suggest diana green revolver courtyard chris tom
+
+suggest tom peacock poison courtyard chris liz
+
+suggest chris peacock knife billiard liz diana
+
+suggest dave peach wrench courtyard joe diana tom
+
+suggest liz green revolver billiard chris diana tom
+
+suggest diana peacock poison fountain joe chris liz
+
+suggest tom brunette wrench dining joe liz diana
+
+suggest joe peacock poison courtyard chris liz tom
+saw chris poison
+saw liz peacock
+saw tom courtyard
+
+suggest chris rose rope library dave tom
+
+suggest dave peacock horseshoe billiard liz diana
+
+suggest liz plum pipe dining dave
+
+suggest diana gray horseshoe courtyard chris tom
+
+suggest tom plum candlestick courtyard dave diana
+
+suggest joe scarlet wrench fountain chris
+saw chris scarlet
+
+suggest chris brunette horseshoe courtyard diana tom
+
+suggest dave white horseshoe studio joe
+
+suggest liz peach rope courtyard dave diana tom
+
+suggest diana rose knife studio joe chris dave
+
+suggest tom white pipe gazebo dave
+
+saw dave rose
+
+suggest joe mustard horseshoe trophy liz
+saw liz mustard
+
+suggest chris rose candlestick drawing dave liz diana
+
+suggest dave white poison conservatory dave tom
+
+suggest liz plum pipe gazebo dave
+
+suggest diana white rope conservatory dave tom
+
+suggest tom white poison courtyard chris
+
+suggest joe white horseshoe carriage dave
+saw dave carriage
+
+suggest chris mustard rope gazebo dave liz
+
+# chris wins, suggests white horseshoe gazebo, damn
