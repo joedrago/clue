@@ -241,7 +241,7 @@ class ClueSolver
     # performing the suggestion, however, as it is a common strategy to
     # suggest cards in your hand.
     for player in @players.list
-      if (player.name != suggester) and not playerShowedACard[player.name] and (player.index != 0)
+      if ((playerNames.length == cardNames.length) or (player.name != suggester)) and not playerShowedACard[player.name] and (player.index != 0)
         for cardName in cardNames
           card = @cards.map[cardName]
           if card.couldOwn[player.index]
